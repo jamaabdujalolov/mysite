@@ -1,0 +1,21 @@
+# Maxfiy sozlamalar
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Muharrirlar
+.vscode/
+.idea/
+*.swp
+
+# Loglar va vaqtinchalik fayllar
+*.log
+*.tmp
+
+# Claude Code'ning lokal sozlamalari
+.claude/settings.local.json
+
+# Dublikat rasm (jamshid.jpg bilan bir xil)
+images/2026-10-25 21.45.06.jpg
