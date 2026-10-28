@@ -195,7 +195,7 @@ h3 { font-size: 19px; font-weight: 700; }
 .icon svg { width: 24px; height: 24px; }
 .service p { color: var(--muted); font-size: 15px; margin-top: 8px; line-height: 1.6; }
 
-/* Loyihalar */
+/* Ishlarim */
 .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .project {
   background: var(--card); border: 1px solid var(--border);
@@ -213,15 +213,36 @@ h3 { font-size: 19px; font-weight: 700; }
 .c2 { background: linear-gradient(135deg, #4a1f12, #b4521c); }
 .c3 { background: linear-gradient(135deg, #c8641e, #f5a524); }
 .project-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-.tag {
-  align-self: flex-start;
-  font-size: 12px; font-weight: 700; color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 4px 10px; border-radius: 999px;
-}
 .project-body p { color: var(--muted); font-size: 15px; line-height: 1.6; }
-.result { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
-.result b { color: var(--text); font-size: 20px; margin-right: 4px; }
+
+/* Mijozlar fikri */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.review {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 28px 24px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.review blockquote { font-size: 16px; line-height: 1.6; }
+.review figcaption { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); }
+.review figcaption strong { display: block; font-size: 15px; }
+.review figcaption span { color: var(--muted); font-size: 14px; }
+
+/* Savol-javob */
+.faq { display: grid; gap: 12px; max-width: 760px; }
+.faq-item {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; transition: border-color .25s;
+}
+.faq-item[open] { border-color: var(--accent); }
+.faq-item summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 20px 24px; cursor: pointer; list-style: none;
+  font-size: 17px; font-weight: 700;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; font-size: 24px; font-weight: 500; color: var(--accent); line-height: 1; }
+.faq-item[open] summary::after { content: "−"; }
+.faq-item p { padding: 0 24px 20px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 
 /* Aloqa */
 .contact-card {
@@ -259,12 +280,21 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px
   .hero-inner { grid-template-columns: 1.3fr 1fr; gap: 40px; }
   .services { grid-template-columns: repeat(2, 1fr); }
   .projects { grid-template-columns: repeat(2, 1fr); }
+  .reviews { grid-template-columns: 1fr; }
+  /* Planshet va telefonda havolalar logotip ostida, sig'masa yon tomonga suriladi */
+  .nav-inner { height: auto; flex-wrap: wrap; gap: 0 12px; padding-top: 12px; }
+  .nav-actions { margin-left: auto; }
+  .nav-links {
+    order: 3; width: 100%; margin: 0;
+    gap: 22px; padding: 10px 0 12px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: 15px; white-space: nowrap; }
+  .section { scroll-margin-top: 112px; }
 }
 @media (max-width: 760px) {
   .container { padding: 0 16px; }
-  .nav-links { display: none; }
-  .nav-actions { margin-left: auto; }
-  .nav-inner { height: 68px; gap: 12px; }
   .logo-name { font-size: 21px; }
   .nav-cta { padding: 10px 18px; font-size: 15px; }
   .theme-toggle { width: 38px; height: 38px; }
@@ -278,9 +308,10 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px
   .featured-row { display: grid; grid-template-columns: repeat(2, max-content); gap: 16px 32px; font-size: 18px; -webkit-mask-image: none; mask-image: none; }
   .featured-row svg { width: 20px; height: 20px; }
   .hero-photo { max-width: 360px; width: 100%; margin: 0 auto; }
-  .section { scroll-margin-top: 68px; }
   .section { padding: 56px 0; }
   .services, .projects { grid-template-columns: 1fr; }
+  .faq-item summary { padding: 18px 20px; font-size: 16px; }
+  .faq-item p { padding: 0 20px 18px; }
   .contact-card { padding: 36px 20px; border-radius: 22px; }
 }
 @media (max-width: 420px) {
