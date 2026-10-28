@@ -275,7 +275,8 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px
   .hero-sub { font-size: 17px; }
   .hero-cta { font-size: 17px; }
   .featured { margin-top: 44px; }
-  .featured-row { font-size: 22px; gap: 28px; flex-wrap: nowrap; overflow: hidden; }
+  .featured-row { display: grid; grid-template-columns: repeat(2, max-content); gap: 16px 32px; font-size: 18px; -webkit-mask-image: none; mask-image: none; }
+  .featured-row svg { width: 20px; height: 20px; }
   .hero-photo { max-width: 360px; width: 100%; margin: 0 auto; }
   .section { scroll-margin-top: 68px; }
   .section { padding: 56px 0; }
