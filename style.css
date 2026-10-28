@@ -183,9 +183,8 @@ h3 { font-size: 19px; font-weight: 700; }
 .service {
   background: var(--card); border: 1px solid var(--border);
   border-radius: 20px; padding: 28px 24px;
-  transition: transform .25s, border-color .25s;
+  transition: transform .2s, border-color .2s;
 }
-.service:hover { transform: translateY(-4px); border-color: var(--accent); }
 .icon {
   width: 48px; height: 48px; border-radius: 14px;
   display: grid; place-items: center;
@@ -201,9 +200,8 @@ h3 { font-size: 19px; font-weight: 700; }
   background: var(--card); border: 1px solid var(--border);
   border-radius: 20px; overflow: hidden;
   display: flex; flex-direction: column;
-  transition: transform .25s, border-color .25s;
+  transition: transform .2s, border-color .2s;
 }
-.project:hover { transform: translateY(-4px); border-color: var(--accent); }
 .project-cover {
   aspect-ratio: 16 / 10;
   display: grid; place-items: center;
@@ -221,6 +219,11 @@ h3 { font-size: 19px; font-weight: 700; }
   background: var(--card); border: 1px solid var(--border);
   border-radius: 20px; padding: 28px 24px;
   display: flex; flex-direction: column; gap: 20px;
+  transition: transform .2s, border-color .2s;
+}
+/* Kartalar faqat sichqonchali qurilmalarda ko'tariladi (telefonda bosilgandan keyin qotib qolmasin) */
+@media (hover: hover) {
+  .service:hover, .project:hover, .review:hover { transform: translateY(-4px); border-color: var(--accent); }
 }
 .review blockquote { font-size: 16px; line-height: 1.6; }
 .review figcaption { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); }
@@ -240,8 +243,10 @@ h3 { font-size: 19px; font-weight: 700; }
   font-size: 17px; font-weight: 700;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: "+"; font-size: 24px; font-weight: 500; color: var(--accent); line-height: 1; }
-.faq-item[open] summary::after { content: "−"; }
+.faq-item summary::after { content: "+"; font-size: 24px; font-weight: 500; color: var(--accent); line-height: 1; transition: transform .2s ease; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+@keyframes faq-in { from { opacity: 0; translate: 0 -6px; } }
+.faq-item[open] p { animation: faq-in .25s ease; }
 .faq-item p { padding: 0 24px 20px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 
 /* Aloqa */
@@ -272,8 +277,18 @@ h3 { font-size: 19px; font-weight: 700; }
 footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 16px 40px; border-top: 1px solid var(--border); }
 
 /* Paydo bo'lish animatsiyasi */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.visible { opacity: 1; transform: none; }
+/* translate ishlatiladi: kartalarning hover'dagi transform'iga xalal bermasligi uchun */
+.reveal {
+  opacity: 0; translate: 0 14px;
+  transition: opacity .45s ease, translate .45s ease, transform .2s ease, border-color .2s ease;
+}
+.reveal.visible { opacity: 1; translate: none; }
+
+/* Hero: sahifa ochilganda sarlavha ko'tariladi, qolgani biroz keyin paydo bo'ladi */
+@keyframes rise { from { opacity: 0; translate: 0 12px; } }
+@keyframes fade { from { opacity: 0; } }
+.hero h1 { animation: rise .6s ease both; }
+.rating, .hero-sub, .hero-cta, .featured, .hero-photo { animation: fade .5s ease .15s both; }
 
 /* Moslashuvchanlik */
 @media (max-width: 960px) {
@@ -318,5 +333,7 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px
   .logo-pill { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { opacity: 1; translate: none; transition: none; }
+  .hero h1, .rating, .hero-sub, .hero-cta, .featured, .hero-photo, .faq-item[open] p { animation: none; }
+  .faq-item summary::after { transition: none; }
 }
